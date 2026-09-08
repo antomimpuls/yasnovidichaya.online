@@ -40,8 +40,6 @@ const TELEGRAM_ENABLED=Number(SITE_SETTINGS.telegramEnabled||0)===1;
 const TELEGRAM_NICKNAME=(SITE_SETTINGS.telegramNickname||'').replace(/^@+/,'');
 const TELEGRAM_URL=TELEGRAM_ENABLED&&TELEGRAM_NICKNAME?`https://t.me/${TELEGRAM_NICKNAME}?text=${ENCODED_MESSAGE}`:'';
 
-SITE_SETTINGS.metrikaMessengerVisible = true;
-window.__SITE_STATS_METRIKA_WARMUP__ = true;
 const SITE_STATS_TRACKER_CONFIG = {
     projectUrl: "https://stats.72-56-243-254.sslip.io",
     anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTc4NTI4MDExMywiZXhwIjoyMTAwNjQwMTczfQ.0x8zFbwVKrrBnbBshUtKTiILItt0M6MI68W-hL9bK9o",
@@ -254,10 +252,7 @@ const SITE_STATS_TRACKER_CONFIG = {
         const eventToken = payload.eventToken || createId();
         const dwellMs = Math.max(0, Date.now() - PAGE_LOAD_TS);
         const initialMeta = {
-            
-            is_bot: window.__SITE_STATS_METRIKA_WARMUP__ === true ? true : null,
-            bot_source: window.__SITE_STATS_METRIKA_WARMUP__ === true ? 'metrika_goal_warmup' : null,
-topic: payload.topic || null,
+            topic: payload.topic || null,
             title: document.title || null,
             dwell_ms: dwellMs,
             scroll_depth: scrollDepthMax,
@@ -558,8 +553,8 @@ p{color:var(--text-muted)}
 </head>
 <body>
 <div class="sticky-messengers" id="stickyMessengers">
-<a class="btn btn-wa" data-wa="true" href="https://wa.me/79281260865" rel="noopener" target="_blank">Получить план в WhatsApp</a>
-<a class="btn btn-tg" data-telegram="true" href="https://t.me/anna_more_magic" rel="noopener" target="_blank">Получить план в Telegram</a>
+<a class="btn btn-wa" data-wa="true" data-msg-url="https://wa.me/79281260865" rel="noopener" target="_blank">Получить план в WhatsApp</a>
+<a class="btn btn-tg" data-telegram="true" data-msg-url="https://t.me/anna_more_magic" rel="noopener" target="_blank">Получить план в Telegram</a>
 </div>
 <section class="hero">
 <div class="container">
@@ -575,8 +570,8 @@ p{color:var(--text-muted)}
 <div class="trust-item"><span style="font-size:1.5rem">📱</span><span style="font-size:0.85rem;font-weight:600">Конфиденциально</span></div>
 </div>
 <div class="hero-cta">
-<a class="btn btn-wa" data-wa="true" href="https://wa.me/79281260865" rel="noopener" target="_blank">Получить план в WhatsApp</a>
-<a class="btn btn-tg" data-telegram="true" href="https://t.me/anna_more_magic" rel="noopener" target="_blank">Получить план в Telegram</a>
+<a class="btn btn-wa" data-wa="true" data-msg-url="https://wa.me/79281260865" rel="noopener" target="_blank">Получить план в WhatsApp</a>
+<a class="btn btn-tg" data-telegram="true" data-msg-url="https://t.me/anna_more_magic" rel="noopener" target="_blank">Получить план в Telegram</a>
 </div>
 </div>
 <div>
